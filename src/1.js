@@ -1,5 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Form} from 'reactstrap';
+import {FormGroup} from 'reactstrap';
+import {Label} from 'reactstrap';
+import {Button , div} from 'reactstrap';
 
 
 var country_name;
@@ -8,13 +14,13 @@ var countries_data=[];
 var count=1;
 
     function input(){
-      while(true){
+      console.log("working?")
+
     country_name = document.getElementById('country').value;
 
     console.log("The country selected is:", country_name);
     console.log("Type is:",typeof (country_name));
     getData();
-      }
 }
 async function getData() {
     let url = fetch(`https://restcountries.com/v3.1/name/${country_name}`);
@@ -88,39 +94,24 @@ function createTable(countries_data) {
 
 function App() {
   return (
-    <div class="container">
-        
-        <div class="row">
-            <div class="col-md-6">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Country Nmae</label>
-                <input type="text" class="form-control" id="country" aria-describedby="emailHelp" placeholder="Enter Country Name"/>
-                {/* <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> */}
-              </div>
-            </div>
-              <div className="col-md-6 p-4">
-                <button type="button" onClick={input} class="btn btn-outline-primary float-right">Add Country</button>
-              </div>                
-        </div>
-      <div>
-      <table class="table table-hover" id="country_table">
-  <thead>
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Common Name</th>
-      <th scope="col">Official Name</th>
-      <th scope="col">Languages</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody id="tableBody">
-    
-  </tbody>
-</table>
-      </div>
-    </div>
-   
-    
+    <div className='container'>
+    <Form>
+  <FormGroup>
+    <Label for="country_name">
+      Country
+    </Label>
+    <input
+      id="country"
+      name="country_name"
+      placeholder="Enter Country Name"
+      type="text"
+    />
+  </FormGroup>
+  <Button onClick={input}>
+    Submit
+  </Button>
+</Form>
+  </div>    
   );
 }
 
